@@ -1,0 +1,1 @@
+Code de deploiement de la fastapi sur azur
