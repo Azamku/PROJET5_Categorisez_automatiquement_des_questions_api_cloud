@@ -1,13 +1,13 @@
 # Utiliser une image Python de base
 FROM python:3.9-slim
 
-# Définir le répertoire de travail
+# Dï¿½finir le rï¿½pertoire de travail
 WORKDIR /app
 
-# Copier les fichiers nécessaires
+# Copier les fichiers nï¿½cessaires
 COPY . /app
 
-# Installer les dépendances
+# Installer les dï¿½pendances
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Exposer le port pour l'application
