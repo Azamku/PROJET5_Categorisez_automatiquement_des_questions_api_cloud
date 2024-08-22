@@ -26,6 +26,7 @@ def read_root():
 @app.post("/predict", response_model=Prediction)
 async def predict_tags(question: Question):
     try:
+        print("toto")
         # Prétraiter le texte
         text_cleaned_list = preprocess_text(question.text)
         text_cleaned_joined = ' '.join(text_cleaned_list)
