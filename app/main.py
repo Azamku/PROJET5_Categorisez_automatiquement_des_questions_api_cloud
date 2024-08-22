@@ -13,17 +13,26 @@ try:
 except Exception as e:
     raise HTTPException(status_code=500, detail=f"Erreur lors du chargement des modèles: {e}")
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 class Question(BaseModel):
     text: str
 
 class Prediction(BaseModel):
     tags: List[str]
 
+
 @app.get("/")
 def read_root():
     return {"message": "Bienvenue dans l'API de prédiction de tags. Consultez /docs pour plus d'informations."}
 
-@app.post("/predict", response_model=Prediction)
+@app.post("/predict")
 async def predict_tags(question: Question):
     try:
         print("toto")
@@ -35,7 +44,7 @@ async def predict_tags(question: Question):
         bow_predict_result = bow_model.predict([text_cleaned_joined])
         tags_predits = mlb_job.inverse_transform(bow_predict_result)
         predicted_tags_list = [tag for tags in tags_predits for tag in tags]
-        
+        print(predicted_tags_list)
         return {"tags": predicted_tags_list}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erreur lors de la prédiction: {e}")
