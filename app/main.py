@@ -28,11 +28,11 @@ class Prediction(BaseModel):
     tags: List[str]
 
 
-@app.get("/")
-def read_root():
-    return {"message": "Bienvenue dans l'API de prédiction de tags. Consultez /docs pour plus d'informations."}
+# @app.get("/")
+# def read_root():
+#     return {"message": "Bienvenue dans l'API de prédiction de tags. Consultez /docs pour plus d'informations."}
 
-@app.post("/predict")
+@app.post("/predict/")
 async def predict_tags(question: Question):
     try:
         print("toto")
