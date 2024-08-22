@@ -33,11 +33,11 @@ class Prediction(BaseModel):
 #     return {"message": "Bienvenue dans l'API de prédiction de tags. Consultez /docs pour plus d'informations."}
 
 @app.post("/predict/")
-async def predict_tags(question: Question):
+async def predict_tags(question: str):
     try:
         print("toto")
         # Prétraiter le texte
-        text_cleaned_list = preprocess_text(question.text)
+        text_cleaned_list = preprocess_text(question)
         text_cleaned_joined = ' '.join(text_cleaned_list)
 
         # Faire la prédiction
