@@ -35,6 +35,7 @@ def read_root():
 @app.post("/predict/")
 async def predict_tags(question: Question):
     try:
+        print("debut de la fonction predict sur main.py")
         print(question.text)
         # Prétraiter le texte
         text_cleaned_list = preprocess_text(question.text)
