@@ -13,13 +13,13 @@ try:
 except Exception as e:
     raise HTTPException(status_code=500, detail=f"Erreur lors du chargement des modèles: {e}")
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["*"],
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
 
 class Question(BaseModel):
     text: str
@@ -28,16 +28,16 @@ class Prediction(BaseModel):
     tags: List[str]
 
 
-# @app.get("/")
-# def read_root():
-#     return {"message": "Bienvenue dans l'API de prédiction de tags. Consultez /docs pour plus d'informations."}
+@app.get("/")
+def read_root():
+    return {"message": "Bienvenue dans l'API de prédiction de tags. Consultez /docs pour plus d'informations."}
 
 @app.post("/predict/")
-async def predict_tags(question: str):
+async def predict_tags(question: Question):
     try:
-        print("toto")
+        print(question.text)
         # Prétraiter le texte
-        text_cleaned_list = preprocess_text(question)
+        text_cleaned_list = preprocess_text(question.text)
         text_cleaned_joined = ' '.join(text_cleaned_list)
 
         # Faire la prédiction
