@@ -10,5 +10,6 @@ if st.button("Prédire"):
     response = requests.post("https://myfastapiappstack-hnfjcmgehydeb7hm.westeurope-01.azurewebsites.net/predict/", json={"text": input_text}) #adresse de notre app déployée sur azure
     print("toto")
     print(input_text) 
+    print(response)
     tags = response.json().get("tags", [])
     st.write("Tags Prédits:", ", ".join(tags))
