@@ -34,18 +34,19 @@ def read_root():
 
 @app.post("/predict/")
 async def predict_tags(question: Question):
-    try:
-        print("debut de la fonction predict sur main.py!§§")
-        print(question.text)
-        # Prétraiter le texte
-        text_cleaned_list = preprocess_text(question.text)
-        text_cleaned_joined = ' '.join(text_cleaned_list)
+    # try:
+    #     print("debut de la fonction predict sur main.py!§§")
+    #     print(question.text)
+    #     # Prétraiter le texte
+    #     text_cleaned_list = preprocess_text(question.text)
+    #     text_cleaned_joined = ' '.join(text_cleaned_list)
 
-        # Faire la prédiction
-        bow_predict_result = bow_model.predict([text_cleaned_joined])
-        tags_predits = mlb_job.inverse_transform(bow_predict_result)
-        predicted_tags_list = [tag for tags in tags_predits for tag in tags]
-        print(predicted_tags_list)
-        return {"tags": predicted_tags_list}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Erreur lors de la prédiction: {e}")
+    #     # Faire la prédiction
+    #     bow_predict_result = bow_model.predict([text_cleaned_joined])
+    #     tags_predits = mlb_job.inverse_transform(bow_predict_result)
+    #     predicted_tags_list = [tag for tags in tags_predits for tag in tags]
+    #     print(predicted_tags_list)
+    #     return {"tags": predicted_tags_list}
+    # except Exception as e:
+    #     raise HTTPException(status_code=500, detail=f"Erreur lors de la prédiction: {e}")
+    return {"message": "Test réussit"}
