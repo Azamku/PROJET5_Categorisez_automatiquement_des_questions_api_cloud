@@ -13,13 +13,6 @@ try:
 except Exception as e:
     raise HTTPException(status_code=500, detail=f"Erreur lors du chargement des modèles: {e}")
 
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=["*"],
-#     allow_credentials=True,
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
 
 class Question(BaseModel):
     text: str
@@ -32,10 +25,10 @@ class Prediction(BaseModel):
 def read_root():
     return {"message": "Bienvenue dans l'API de prédiction de tags. Consultez /docs pour plus d'informations."}
 
-@app.post("/predict/")
+@app.post("/predict")
 async def predict_tags(question: Question):
-    # try:
-    #     print("debut de la fonction predict sur main.py!§§")
+    try:
+        print("debut de la fonction predict sur main.py!§§")
     #     print(question.text)
     #     # Prétraiter le texte
     #     text_cleaned_list = preprocess_text(question.text)
@@ -47,6 +40,6 @@ async def predict_tags(question: Question):
     #     predicted_tags_list = [tag for tags in tags_predits for tag in tags]
     #     print(predicted_tags_list)
     #     return {"tags": predicted_tags_list}
-    # except Exception as e:
-    #     raise HTTPException(status_code=500, detail=f"Erreur lors de la prédiction: {e}")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Erreur lors de la prédiction: {e}")
     return {"message": "Test réussit"}
