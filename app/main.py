@@ -42,4 +42,4 @@ async def predict_tags(question: Question):
     #     return {"tags": predicted_tags_list}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erreur lors de la prédiction: {e}")
-    return {"message": "Test réussit"}
+    return {"message": "Test réussi"}

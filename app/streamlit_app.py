@@ -7,7 +7,7 @@ st.title('Prédiction de Tags pour Stack Overflow')
 input_text = st.text_area("Entrez une question:")
 
 if st.button("Prédire"):
-    response = requests.post("https://apistackazure-fdardvakd2e2avfd.westeurope-01.azurewebsites.net/predict", json={"text": input_text}) #adresse de notre app déployée sur azure
+    response = requests.post("http://www.azamku.pythonanywhere.com/predict", json={"text": input_text}) #adresse de notre app déployée sur azure
     print("toto")
     print(input_text) 
     print(response)
