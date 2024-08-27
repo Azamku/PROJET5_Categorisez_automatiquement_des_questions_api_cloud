@@ -11,3 +11,4 @@ beautifulsoup4
 nltk
 uvicorn
 pydantic
+requests==2.28.2
