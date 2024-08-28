@@ -7,9 +7,12 @@ st.title('Prédiction de Tags pour Stack Overflow')
 input_text = st.text_area("Entrez une question:")
 
 if st.button("Prédire"):
-    response = requests.post("http://www.azamku.pythonanywhere.com/predict", json={"text": input_text}) #adresse de notre app déployée sur azure
+    response = requests.post("https://apistackazure-fdardvakd2e2avfd.westeurope-01.azurewebsites.net/predict", json={"text": input_text}) #adresse de notre app déployée sur azure
     print("toto")
     print(input_text) 
     print(response)
-    tags = response.json().get("tags", [])
-    st.write("Tags Prédits:", ", ".join(tags))
+    if response.status_code == 200:
+        tags = response.json().get("tags", [])
+        st.write("Tags Prédits:", ", ".join(tags))
+    else:
+        st.write(f"Erreur: Impossible de contacter l'API (status code: {response.status_code})")
