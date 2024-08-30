@@ -13,11 +13,7 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v2
 
-      - name: Log in to Azure
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
+       
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -32,4 +28,6 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
+          slot-name: 'production'
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: .  # Déploie le contenu du répertoire racine du dépôt
