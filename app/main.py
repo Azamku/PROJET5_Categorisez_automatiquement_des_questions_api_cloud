@@ -25,7 +25,7 @@ class Prediction(BaseModel):
 def read_root():
     return {"message": "Bienvenue dans l'API de prédiction de tags. Consultez /docs pour plus d'informations."}
 
-@app.get("/predict") #addresse post ok quand testé en local
+@app.post("/predict") #addresse post ok quand testé en local
 async def predict_tags(question: Question):
     try:
         print("debut de la fonction predict sur main.py!§§sd")
